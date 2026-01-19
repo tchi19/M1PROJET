@@ -1,0 +1,167 @@
+# QUICK START GUIDE
+
+## 🚀 5-Minute Setup
+
+### 1. Place Files in Web Root
+- Copy entire M1PROJET folder to your web server root (htdocs, www, etc.)
+
+### 2. Update Database Config (IMPORTANT!)
+Edit: `M1PROJET/includes/db_config.php`
+```php
+define('DB_USER', 'root');      // Your MySQL username
+define('DB_PASSWORD', '');      // Your MySQL password
+```
+
+### 3. Initialize Database
+Visit in your browser:
+```
+http://localhost/M1PROJET/includes/init_db.php
+```
+You should see: "Database tables initialized successfully!"
+
+### 4. Access the System
+Go to:
+```
+http://localhost/M1PROJET/auth/signup.php
+```
+
+---
+
+## 📋 Create Your First Admin Account
+
+1. **Go to Signup**: `http://localhost/M1PROJET/auth/signup.php`
+2. **Fill Form**:
+   - Full Name: Your Name
+   - Email: admin@test.com
+   - Password: admin123
+   - Role: **Admin**
+3. **Click**: Create Account
+4. **Login** with your credentials
+
+---
+
+## ✅ Complete Setup Checklist
+
+- [ ] Copy M1PROJET to web root
+- [ ] Update db_config.php with your MySQL credentials
+- [ ] Visit init_db.php (see success message)
+- [ ] Create admin account via signup
+- [ ] Login to admin dashboard
+- [ ] Create a Department
+- [ ] Create a Formation in that department
+- [ ] Create a Module in that formation
+- [ ] Create some Exam Rooms
+- [ ] Create Professor accounts (via Admin > Professors)
+- [ ] Create Student accounts (via Admin > Students)
+- [ ] Enroll students in modules (via Admin tools)
+- [ ] Assign professors to modules (via Admin tools)
+- [ ] Generate exam schedule (Admin > Schedule Exams)
+- [ ] View results in different role dashboards
+
+---
+
+## 👤 Test Different Roles
+
+### ADMIN
+- URL: `http://localhost/M1PROJET/auth/login.php`
+- Email: admin@test.com
+- Password: admin123
+- Access: Full system management
+
+### STUDENT
+- Create via Admin > Students
+- View personal timetable
+- Access: Student portal only
+
+### PROFESSOR
+- Create via Admin > Professors
+- View exams to teach
+- Access: Professor portal only
+
+### DOYEN
+- Create via signup with role=doyen
+- View global statistics
+- Access: Global dashboard
+
+### CHEF DE DÉPARTEMENT
+- Create via signup with role=chef
+- Set as department head in Admin > Departments
+- Access: Department-specific views
+
+---
+
+## 🔧 If Something Goes Wrong
+
+### Database Not Initializing
+```bash
+# Check MySQL is running
+# Manually create database:
+mysql -u root -p
+CREATE DATABASE exam_timetable;
+```
+
+### Can't Login
+- Use same credentials you registered with
+- Check email/password carefully (case-sensitive)
+- Try creating a new account
+
+### Blank Pages
+- Check PHP is enabled on your server
+- Verify all files uploaded correctly
+- Check browser console for errors (F12)
+
+### Missing Data in Tables
+- Admin needs to create departments, formations, modules first
+- Students need to be enrolled in modules
+- Professors need to be assigned to modules before scheduling
+
+---
+
+## 📊 Sample Data to Create
+
+### Department
+- Name: Computer Science
+- Description: CS Department
+
+### Formation
+- Name: Bachelor in CS
+- Department: Computer Science
+- Duration: 24 months
+
+### Module
+- Name: Database Management
+- Code: CS301
+- Formation: Bachelor in CS
+- Credits: 4
+- Semester: 2
+
+### Exam Room
+- Name: Amphitheater A
+- Capacity: 100
+- Type: Amphi
+
+### Professor
+- Email: dr.smith@university.edu
+- Name: Dr. Smith
+- Department: Computer Science
+
+### Student
+- Email: student1@university.edu
+- Name: John Doe
+- Formation: Bachelor in CS
+
+---
+
+## 🎯 Next Steps After Setup
+
+1. **Enroll Students**: Admin > Students menu shows student list
+2. **Assign Professors**: Link professors to modules in Admin > Modules
+3. **Create Schedule**: Admin > Schedule Exams (automatically respects constraints)
+4. **Review**: Check different role dashboards to see their views
+5. **Resolve Conflicts**: Admin > Conflicts (if any detected)
+
+---
+
+**All features are now ready to use!**
+
+For detailed documentation, see README.md
