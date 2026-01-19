@@ -1,40 +1,34 @@
 <?php
-// Database configuration
-define('DB_SERVER', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'exam_timetable');
+/**
+ * Database configuration
+ * Works on: Local (WAMP/XAMPP) AND Railway (MySQL)
+ */
 
-// Create connection
-$conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD);
+// Detect Railway environment
+if (getenv("MYSQL_HOST")) {
+    // ===== RAILWAY CONFIG =====
+    $DB_HOST = getenv("MYSQL_HOST");
+    $DB_USER = getenv("MYSQL_USER");
+    $DB_PASS = getenv("MYSQL_PASSWORD");
+    $DB_NAME = getenv("MYSQL_DATABASE");
+    $DB_PORT = getenv("MYSQL_PORT");
+} else {
+    // ===== LOCAL CONFIG =====
+    $DB_HOST = "localhost";
+    $DB_USER = "root";
+    $DB_PASS = "";
+    $DB_NAME = "exam_timetable";
+    $DB_PORT = 3306;
+}
+
+// Create MySQL connection
+$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_PORT);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed: " . $conn->connect_error);
 }
 
-// Create database if it doesn't exist
-$sql = "CREATE DATABASE IF NOT EXISTS " . DB_NAME;
-if ($conn->query($sql) === FALSE) {
-    die("Error creating database: " . $conn->error);
-}
-
-// Select the database
-$conn->select_db(DB_NAME);
-
-// Set charset to utf8
-$conn->set_charset("utf8");
-
-// Close temporary connection and create final connection
-$conn->close();
-
-// Create final connection
-$conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Set charset to utf8
+// Set charset
 $conn->set_charset("utf8");
 ?>
