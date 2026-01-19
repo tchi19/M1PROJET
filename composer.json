@@ -1,0 +1,8 @@
+{
+    "name": "tchi19/m1-projet",
+    "description": "Exam Timetable Management System",
+    "require": {
+        "php": ">=7.4"
+    },
+    "license": "MIT"
+}
